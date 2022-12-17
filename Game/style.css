@@ -10,13 +10,15 @@ body {
 }
 
 .main_screen{
-    height: 500px;
-    width: 500px;
     position: fixed;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    z-index: 101;
+    z-index: 10;
+    height: 10vh;
+    font-size: 10vh;
+    font-weight: 100;
+    color: black;
+    top: 12vh;
+    left: 20vw;
+    text-align: center;
 }
 
 .springDickson{

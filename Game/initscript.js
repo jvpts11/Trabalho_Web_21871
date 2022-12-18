@@ -1,6 +1,7 @@
-let move_speed = 3;   
+let move_speed = 3;
+    
 let gravity = 0.5;
-
+    
 let spring = document.querySelector('.spring');
     
 let spring_props = spring.getBoundingClientRect();
@@ -14,8 +15,7 @@ let message =
     document.querySelector('.message');
 let score_title =
     document.querySelector('.score_title');
-//let score_title_magnet =
-  //  document.querySelector('.score_title_magnet');    
+    
 let game_state = 'Start';
     
 // Add an eventlistener for key presses
@@ -30,39 +30,22 @@ document.addEventListener('keydown', (e) => {
     spring.style.top = '40vh';
     game_state = 'Play';
     message.innerHTML = '';
-    score_title.innerHTML = 'Pipe score: ';
-   // score_title.innerHTML = 'Magnet score: ';
+    score_title.innerHTML = 'Jumps : ';
     score_val.innerHTML = '0';
     play();
   }
 });
 function play() {
   function move() {
-    
+      
     if (game_state != 'Play') return;
-  /*  magnet_sprite.forEach((element) => {
-        
-      let magnet_sprite_props = element.getBoundingClientRect();
-      spring_props = spring.getBoundingClientRect();
-    let magnet_sprite = document.querySelector('.magnet_sprite');
-    if (magnet_sprite_props.right <= 0) {
-      element.remove();
-    } else if(
-      spring_props.left < magnet_sprite_props.left +
-      magnet_sprite_props.width &&
-      spring_props.left +
-      spring_props.width > magnet_sprite_props.left &&
-      spring_props.top < magnet_sprite_props.top +
-      magnet_sprite_props.height &&
-      spring_props.top +
-      spring_props.height > magnet_sprite_props.top
-    )*/
+      
     let pipe_sprite = document.querySelectorAll('.pipe_sprite');
     pipe_sprite.forEach((element) => {
         
       let pipe_sprite_props = element.getBoundingClientRect();
       spring_props = spring.getBoundingClientRect();
-  
+        
       if (pipe_sprite_props.right <= 0) {
         element.remove();
       } else {
@@ -91,7 +74,7 @@ function play() {
             pipe_sprite_props.left - move_speed + 'px';
         }
       }
-  });
+    });
   
     requestAnimationFrame(move);
   }
@@ -120,14 +103,14 @@ function play() {
   }
   requestAnimationFrame(apply_gravity);
   
-  let pipe_separation = 0;
+  let pipe_seperation = 0;
     
   let pipe_gap = 35;
   function create_pipe() {
     if (game_state != 'Play') return;
 
-    if (pipe_separation > 115) {
-      pipe_separation = 0
+    if (pipe_seperation > 115) {
+      pipe_seperation = 0
         
       let pipe_posi = Math.floor(Math.random() * 43) + 8;
       let pipe_sprite = document.createElement('div');
@@ -138,34 +121,8 @@ function play() {
         
       document.body.appendChild(pipe_sprite);
     }
-    pipe_separation++;
+    pipe_seperation++;
     requestAnimationFrame(create_pipe);
   }
   requestAnimationFrame(create_pipe);
 }
-
-/*
-  let magnet_separation = 0;
-
-  let magnet_gap = 35;
-  function create_magnet() {
-    if (game_state != 'Play') return;
-
-    if (magnet_separation > 115) {
-      magnet_separation = 0;
-    
-    let magnet_posi = Math.floor(Math.random() * 43) + 8;
-    let magnet_sprite = document.createElement('div');
-    magnet_sprite.className = 'magnet_sprite';
-    magnet_sprite.style.top = magnet_posi + magnet_gap + 'vh';
-    magnet_sprite.style.left = '100vw';
-    magnet_sprite.increase_score = '1';
-      
-    document.body.appendChild(magnet_sprite);
-    }
-  magnet_separation++;
-  requestAnimationFrame(create_magnet);
-}
-requestAnimationFrame(create_magnet);
-}
-*/

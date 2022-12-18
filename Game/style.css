@@ -51,7 +51,6 @@ body {
     top: 12vh;
     left: 20vw;
     text-align: center;
-    font-family: Arial;
 }
 
 .score {
@@ -63,18 +62,8 @@ body {
     color: goldenrod;
     top: 0;
     left: 0;
-    font-family: Arial;
 }
 
 .score_val {
     color: gold;
-}
-
-.spring_dead {
-    height: 100px;
-    width: 100px;
-    position: fixed;
-    top: 40vh;
-    left: 30vw;
-    z-index: 100;  
 }

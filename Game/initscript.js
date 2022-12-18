@@ -17,9 +17,10 @@ let score_title =
 //let score_title_magnet =
   //  document.querySelector('.score_title_magnet');    
 let game_state = 'Start';
-    
-// Add an eventlistener for key presses
-document.addEventListener('keydown', (e) => {
+let spring_init_pos = document.body.getBoundingClientRect()
+
+function game_start(){
+    document.addEventListener('keydown', (e) => {
     
   if (e.key == 'Enter' &&
       game_state != 'Play') {
@@ -129,7 +130,7 @@ function play() {
     if (pipe_separation > 115) {
       pipe_separation = 0
         
-      let pipe_posi = Math.floor(Math.random() * 43) + 8;
+      let pipe_posi = Math.floor(Math.random() * 30) +10;
       let pipe_sprite = document.createElement('div');
       pipe_sprite.className = 'pipe_sprite';
       pipe_sprite.style.top = pipe_posi + pipe_gap + 'vh';

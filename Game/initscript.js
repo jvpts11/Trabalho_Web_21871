@@ -1,6 +1,6 @@
-let move_speed = 3;
+let move_speed = 4;
 
-let gravity = 0.5;
+let gravity = 1;
 
 let spring = document.querySelector(".spring");
 
@@ -22,7 +22,7 @@ document.addEventListener("keydown", (e) => {
     spring.style.top = "40vh";
     game_state = "Play";
     message.innerHTML = "";
-    score_title.innerHTML = "Jumps : ";
+    score_title.innerHTML = "Jumps_Score : ";
     score_val.innerHTML = "0";
     play();
   }
@@ -53,13 +53,6 @@ function play() {
           message.style.left = "28vw";
           return;
         } else {
-          if (
-            pipe_sprite_props.right < spring_props.left &&
-            pipe_sprite_props.right + move_speed >= spring_props.left &&
-            element.increase_score == "1"
-          ) {
-            score_val.innerHTML = +score_val.innerHTML + 1;
-          }
           element.style.left = pipe_sprite_props.left - move_speed + "px";
         }
       }
@@ -75,6 +68,7 @@ function play() {
     spring_dy = spring_dy + gravity;
     document.addEventListener("keydown", (e) => {
       if (e.key == "ArrowUp" || e.key == " ") {
+        score_val.innerHTML++;
         spring_dy = -7.6;
       }
     });
@@ -93,7 +87,7 @@ function play() {
 
   let pipe_seperation = 0;
 
-  let pipe_gap = 35;
+  let pipe_gap = 25;
   function create_pipe() {
     if (game_state != "Play") return;
 

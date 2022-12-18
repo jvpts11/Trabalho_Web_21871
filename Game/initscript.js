@@ -116,7 +116,7 @@ function play() {
     if (pipe_seperation > 115) {
       pipe_seperation = 0
         
-      let pipe_posi = Math.floor(Math.random() * 43) + 8;
+      let pipe_posi = Math.floor(Math.random() * 30) +10;
       let pipe_sprite = document.createElement('div');
       pipe_sprite.className = 'pipe_sprite';
       pipe_sprite.style.top = pipe_posi + pipe_gap + 'vh';

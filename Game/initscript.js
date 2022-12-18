@@ -17,24 +17,28 @@ let score_title =
     document.querySelector('.score_title');
     
 let game_state = 'Start';
+let spring_init_pos = document.body.getBoundingClientRect()
+
+function game_start(){
+    document.addEventListener('keydown', (e) => {
     
-// Add an eventlistener for key presses
-document.addEventListener('keydown', (e) => {
-    
-  if (e.key == 'Enter' &&
-      game_state != 'Play') {
-    document.querySelectorAll('.pipe_sprite')
-              .forEach((e) => {
-      e.remove();
-    });
-    spring.style.top = '40vh';
-    game_state = 'Play';
-    message.innerHTML = '';
-    score_title.innerHTML = 'Jumps : ';
-    score_val.innerHTML = '0';
-    play();
-  }
-});
+        if (e.key == 'Enter' &&
+            game_state != 'Play') {
+          document.querySelectorAll('.pipe_sprite')
+                    .forEach((e) => {
+            e.remove();
+          });
+          spring.style.top = '40vh';
+          game_state = 'Play';
+          message.innerHTML = '';
+          score_title.innerHTML = 'Jumps : ';
+          score_val.innerHTML = '0';
+          play();
+        }
+      });
+}
+
+game_start();
 function play() {
   function move() {
       

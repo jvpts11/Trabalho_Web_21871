@@ -1,0 +1,8 @@
+.springDickson{
+    height: 100px;
+    width: 100px;
+    position: fixed;
+    top: 40vh;
+    left: 30vw;
+    z-index: 100;
+}

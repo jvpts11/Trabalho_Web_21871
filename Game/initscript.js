@@ -1,8 +1,13 @@
 let move_speed = 4;
 
-let gravity = 1;
+var minGravity = 0.3;
+var maxGravity = 0.7;
+
+let gravity = 0.3
 
 let spring = document.querySelector(".spring");
+let spring_sound = new Audio();
+spring_sound.src = "./assets/Spring_Sound.mp3"
 
 let spring_props = spring.getBoundingClientRect();
 let background = document.querySelector(".background").getBoundingClientRect();
@@ -22,7 +27,7 @@ document.addEventListener("keydown", (e) => {
     spring.style.top = "40vh";
     game_state = "Play";
     message.innerHTML = "";
-    score_title.innerHTML = "Jumps_Score : ";
+    score_title.innerHTML = "Score: ";
     score_val.innerHTML = "0";
     play();
   }
@@ -46,8 +51,6 @@ function play() {
           spring_props.top < pipe_sprite_props.top + pipe_sprite_props.height &&
           spring_props.top + spring_props.height > pipe_sprite_props.top
         ) {
-          // Change game state and end the game
-          // if collision occurs
           game_state = "End";
           message.innerHTML = "Press Enter To Restart";
           message.style.left = "28vw";
@@ -68,15 +71,17 @@ function play() {
     spring_dy = spring_dy + gravity;
     document.addEventListener("keydown", (e) => {
       if (e.key == "ArrowUp" || e.key == " ") {
-        score_val.innerHTML++;
+        score_val.innerHTML = +score_val.innerHTML + 1;
+        gravity = Math.random() * (maxGravity - minGravity) + minGravity;
+        spring_sound.play()
         spring_dy = -7.6;
       }
     });
 
     if (spring_props.top <= 0 || spring_props.bottom >= background.bottom) {
       game_state = "End";
-      message.innerHTML = "Press Enter To Restart";
-      message.style.left = "28vw";
+      
+      location.reload()
       return;
     }
     spring.style.top = spring_props.top + spring_dy + "px";

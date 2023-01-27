@@ -46,7 +46,7 @@ function play() {
       } else {
         if (
           spring_props.left <
-            pipe_sprite_props.left + pipe_sprite_props.width &&
+          pipe_sprite_props.left + pipe_sprite_props.width &&
           spring_props.left + spring_props.width > pipe_sprite_props.left &&
           spring_props.top < pipe_sprite_props.top + pipe_sprite_props.height &&
           spring_props.top + spring_props.height > pipe_sprite_props.top

@@ -1,8 +1,6 @@
 let move_speed = 4;
-
 var minGravity = 0.3;
-var maxGravity = 0.7;
-
+var maxGravity;
 let gravity = 0.3
 
 let spring = document.querySelector(".spring");
@@ -11,14 +9,46 @@ spring_sound.src = "./assets/Spring_Sound.mp3"
 
 let spring_props = spring.getBoundingClientRect();
 let background = document.querySelector(".background").getBoundingClientRect();
-
 let score_val = document.querySelector(".score_val");
 let message = document.querySelector(".message");
 let score_title = document.querySelector(".score_title");
 
 let game_state = "Start";
 
-// Add an eventlistener for key presses
+var temperature = 0
+
+function getTemp(){
+  let promiseTemp = fetch('https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Braga?unitGroup=metric&key=4B82WS397A8ZXT6XHVA2HPZZJ&contentType=json')
+
+  let promiseTemp2 = promiseTemp.then(function(response){
+    return response.json()
+  })
+
+  promiseTemp2.then(function(data){
+    temperature = data.currentConditions.temp
+  })
+}
+getTemp()
+
+function setGravityByTemp(){
+  if(temperature < 10){
+    return maxGravity = 0.5
+  }
+  else if(temperature > 10){
+    return maxGravity = 0.7
+  }
+  else if(temperature > 20){
+    return maxGravity = 0.9
+  }
+  else{
+    return maxGravity = 0.6
+  }
+}
+
+setGravityByTemp()
+
+console.log(maxGravity)
+
 document.addEventListener("keydown", (e) => {
   if (e.key == "Enter" && game_state != "Play") {
     document.querySelectorAll(".pipe_sprite").forEach((e) => {
